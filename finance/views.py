@@ -10,22 +10,6 @@ from rest_framework.authtoken.models import Token
 
 # Create your views here.
 # We can use regular django views or use rest_framework capabilities
-
-# Register user views
-class RegisterUser(APIView):
-    def post(self,request):
-        username = request.data.get('username')
-        email = request.data.get('email')
-        password = request.data.get('password')
-
-        if not username or not email or not password:
-            return Response({"error" : "Please provide all the details"},status=404)
-        
-        user = User.objects.create_user(username=username,email=email,password=password)
-        token,created = Token.objects.get_or_create(user=user)
-
-        return Response({"token": token.key},status = 201)
-
 # Expense Views
 
 class ExpenseListCreateView(APIView):
