@@ -11,7 +11,7 @@ CATEGORY_CHOICES = [
 class Expense(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     category = models.CharField(max_length = 50, choices = CATEGORY_CHOICES)
-    amount = models.DecimalField(max_length = 10, decimal_places = 2 )
+    amount = models.DecimalField(max_digits = 10, decimal_places = 2 )
     date = models.DateField()
     description = models.TextField(blank=True)
 
@@ -21,7 +21,7 @@ class Expense(models.Model):
 class Income(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     source = models.CharField(max_length = 100)
-    amount = models.DecimalField(decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
 
     def __str__(self):
@@ -30,7 +30,7 @@ class Income(models.Model):
 class Budget(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     category = models.CharField(max_length = 50, choices = CATEGORY_CHOICES)
-    amount = models.DecimalField(max_length = 10, decimal_places = 2)
+    amount = models.DecimalField(max_digits = 10, decimal_places = 2)
     month = models.IntegerField()
     year = models.IntegerField()
 
